@@ -1011,6 +1011,11 @@ function FlatpickrInstance(
         self.l10n.monthAriaLabel
       );
 
+      self.monthsDropdownContainer.setAttribute(
+          "name",
+          self.l10n.monthAriaLabel
+      );
+
       bind(self.monthsDropdownContainer, "change", (e: Event) => {
         const target = getEventTarget(e) as HTMLSelectElement;
         const selectedMonth = parseInt(target.value, 10);
@@ -1031,6 +1036,7 @@ function FlatpickrInstance(
       "input"
     )[0] as HTMLInputElement;
     yearElement.setAttribute("aria-label", self.l10n.yearAriaLabel);
+    yearElement.setAttribute("name", self.l10n.yearAriaLabel);
 
     if (self.config.minDate) {
       yearElement.setAttribute(
@@ -2640,6 +2646,7 @@ function FlatpickrInstance(
       self.altInput.required = self.input.required;
       self.altInput.tabIndex = self.input.tabIndex;
       self.altInput.type = "text";
+      self.altInput.name = "flatpickr-input";
       self.input.setAttribute("type", "hidden");
 
       if (!self.config.static && self.input.parentNode)
